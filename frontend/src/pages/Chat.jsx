@@ -111,7 +111,7 @@ export default function Chat() {
         .get(`${API}/api/history/${chatId}`)
         .then((res) => {
           setMessages(res.data.messages);
-          setModel(res.data.model || "gpt-4o-mini");
+          setModel(res.data.model || "llama-3.3-70b-versatile");
         })
         .catch(() => navigate("/chat"));
     } else {
