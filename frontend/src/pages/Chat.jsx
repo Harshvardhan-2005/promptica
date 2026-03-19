@@ -4,21 +4,29 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
 import {
-  Send, Plus, ChevronDown, Bot, User, Sparkles, MessageSquare,
+  Send,
+  Plus,
+  ChevronDown,
+  Bot,
+  User,
+  Sparkles,
+  MessageSquare,
 } from "lucide-react";
 
 const API = import.meta.env.VITE_API_URL || "";
 
 const MODELS = [
-  { id: "gpt-4o", name: "GPT-4o" },
-  { id: "gpt-4o-mini", name: "GPT-4o Mini" },
-  { id: "gpt-3.5-turbo", name: "GPT-3.5 Turbo" },
+  { id: "llama-3.3-70b-versatile", name: "Llama 3.3 70B" },
+  { id: "llama-3.1-8b-instant", name: "Llama 3.1 8B" },
+  { id: "mixtral-8x7b-32768", name: "Mixtral 8x7B" },
 ];
 
 function Message({ msg, isStreaming }) {
   const isUser = msg.role === "user";
   return (
-    <div className={`flex gap-3 animate-slide-up ${isUser ? "flex-row-reverse" : ""}`}>
+    <div
+      className={`flex gap-3 animate-slide-up ${isUser ? "flex-row-reverse" : ""}`}
+    >
       {/* Avatar */}
       <div
         className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -40,7 +48,9 @@ function Message({ msg, isStreaming }) {
         }}
       >
         {isUser ? (
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+            {msg.content}
+          </p>
         ) : (
           <div className={`prose-chat ${isStreaming ? "cursor-blink" : ""}`}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
@@ -64,7 +74,10 @@ function TypingIndicator() {
       </div>
       <div
         className="px-4 py-3.5 rounded-2xl rounded-tl-sm"
-        style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
+        style={{
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
+        }}
       >
         <div className="flex gap-1.5 items-center">
           <span className="typing-dot" />
@@ -81,7 +94,7 @@ export default function Chat() {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [model, setModel] = useState("gpt-4o-mini");
+  const [model, setModel] = useState("llama-3.3-70b-versatile");
   const [showModelMenu, setShowModelMenu] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -185,7 +198,10 @@ export default function Chat() {
       setIsStreaming(false);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry, something went wrong. Please try again." },
+        {
+          role: "assistant",
+          content: "Sorry, something went wrong. Please try again.",
+        },
       ]);
     }
   }, [input, isStreaming, currentChatId, model, navigate]);
@@ -211,7 +227,10 @@ export default function Chat() {
         className="flex items-center justify-between px-4 py-2.5 border-b"
         style={{ borderColor: "var(--border)", background: "var(--surface)" }}
       >
-        <button onClick={newChat} className="btn-ghost flex items-center gap-1.5 text-xs">
+        <button
+          onClick={newChat}
+          className="btn-ghost flex items-center gap-1.5 text-xs"
+        >
           <Plus size={14} />
           New Chat
         </button>
@@ -242,11 +261,15 @@ export default function Chat() {
               {MODELS.map((m) => (
                 <button
                   key={m.id}
-                  onClick={() => { setModel(m.id); setShowModelMenu(false); }}
+                  onClick={() => {
+                    setModel(m.id);
+                    setShowModelMenu(false);
+                  }}
                   className="w-full text-left px-4 py-2 text-xs font-body transition-colors"
                   style={{
                     color: m.id === model ? "var(--accent)" : "var(--text-2)",
-                    background: m.id === model ? "var(--accent-light)" : "transparent",
+                    background:
+                      m.id === model ? "var(--accent-light)" : "transparent",
                     fontWeight: m.id === model ? 600 : 400,
                   }}
                 >
@@ -264,11 +287,17 @@ export default function Chat() {
           <div className="flex-1 flex flex-col items-center justify-center text-center py-20 animate-fade-in">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5"
-              style={{ background: "var(--accent-light)", color: "var(--accent)" }}
+              style={{
+                background: "var(--accent-light)",
+                color: "var(--accent)",
+              }}
             >
               <MessageSquare size={30} />
             </div>
-            <h2 className="text-2xl font-display font-bold mb-2" style={{ color: "var(--text)" }}>
+            <h2
+              className="text-2xl font-display font-bold mb-2"
+              style={{ color: "var(--text)" }}
+            >
               Start a conversation
             </h2>
             <p className="text-sm max-w-xs" style={{ color: "var(--text-3)" }}>
@@ -283,7 +312,11 @@ export default function Chat() {
             <Message
               key={i}
               msg={msg}
-              isStreaming={isStreaming && i === messages.length - 1 && msg.role === "assistant"}
+              isStreaming={
+                isStreaming &&
+                i === messages.length - 1 &&
+                msg.role === "assistant"
+              }
             />
           ))
         )}
@@ -322,15 +355,20 @@ export default function Chat() {
             disabled={!input.trim() || isStreaming}
             className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200"
             style={{
-              background: input.trim() && !isStreaming ? "var(--accent)" : "var(--bg-3)",
+              background:
+                input.trim() && !isStreaming ? "var(--accent)" : "var(--bg-3)",
               color: input.trim() && !isStreaming ? "white" : "var(--text-3)",
-              transform: input.trim() && !isStreaming ? "scale(1.05)" : "scale(1)",
+              transform:
+                input.trim() && !isStreaming ? "scale(1.05)" : "scale(1)",
             }}
           >
             <Send size={15} />
           </button>
         </div>
-        <p className="text-center text-xs mt-2" style={{ color: "var(--text-3)" }}>
+        <p
+          className="text-center text-xs mt-2"
+          style={{ color: "var(--text-3)" }}
+        >
           Enter to send · Shift+Enter for new line
         </p>
       </div>
