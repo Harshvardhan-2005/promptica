@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MessageSquare, Trash2, Clock, Bot, ChevronRight, Plus } from "lucide-react";
+import {
+  MessageSquare,
+  Trash2,
+  Clock,
+  Bot,
+  ChevronRight,
+  Plus,
+} from "lucide-react";
 
 const API = import.meta.env.VITE_API_URL || "";
 
@@ -19,9 +26,9 @@ function timeAgo(date) {
 }
 
 const MODEL_LABELS = {
-  "gpt-4o": "GPT-4o",
-  "gpt-4o-mini": "GPT-4o Mini",
-  "gpt-3.5-turbo": "GPT-3.5",
+  "llama-3.3-70b-versatile": "Llama 3.3 70B",
+  "llama-3.1-8b-instant": "Llama 3.1 8B",
+  "mixtral-8x7b-32768": "Mixtral 8x7B",
 };
 
 export default function History() {
@@ -41,7 +48,9 @@ export default function History() {
     }
   };
 
-  useEffect(() => { fetchChats(); }, []);
+  useEffect(() => {
+    fetchChats();
+  }, []);
 
   const handleDelete = async (e, id) => {
     e.preventDefault();
@@ -62,7 +71,10 @@ export default function History() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-display font-bold" style={{ color: "var(--text)" }}>
+          <h1
+            className="text-3xl font-display font-bold"
+            style={{ color: "var(--text)" }}
+          >
             Chat History
           </h1>
           <p className="text-sm mt-1" style={{ color: "var(--text-3)" }}>
@@ -92,7 +104,10 @@ export default function History() {
           >
             <Clock size={28} />
           </div>
-          <h2 className="text-xl font-display font-bold mb-2" style={{ color: "var(--text)" }}>
+          <h2
+            className="text-xl font-display font-bold mb-2"
+            style={{ color: "var(--text)" }}
+          >
             No conversations yet
           </h2>
           <p className="text-sm mb-6" style={{ color: "var(--text-3)" }}>
@@ -119,7 +134,10 @@ export default function History() {
               {/* Icon */}
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "var(--accent-light)", color: "var(--accent)" }}
+                style={{
+                  background: "var(--accent-light)",
+                  color: "var(--accent)",
+                }}
               >
                 <Bot size={18} />
               </div>
@@ -135,7 +153,10 @@ export default function History() {
                 <div className="flex items-center gap-2 mt-0.5">
                   <span
                     className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ background: "var(--bg-3)", color: "var(--text-3)" }}
+                    style={{
+                      background: "var(--bg-3)",
+                      color: "var(--text-3)",
+                    }}
                   >
                     {MODEL_LABELS[chat.model] || chat.model}
                   </span>
@@ -152,8 +173,12 @@ export default function History() {
                   disabled={deleting === chat._id}
                   className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
                   style={{ color: "var(--text-3)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#ef4444")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#ef4444")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "var(--text-3)")
+                  }
                 >
                   <Trash2 size={14} />
                 </button>
