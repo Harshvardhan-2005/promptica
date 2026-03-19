@@ -51,7 +51,7 @@ export default function Home() {
           }}
         >
           <Sparkles size={12} />
-          Powered by OpenAI GPT
+          Powered by Groq AI
         </div>
 
         <h1
@@ -67,19 +67,26 @@ export default function Home() {
           className="text-lg sm:text-xl max-w-xl mb-10 font-body leading-relaxed"
           style={{ color: "var(--text-2)" }}
         >
-          Promptica is a full-stack AI chat app with real-time streaming, persistent
-          history, and multi-model support. Start a conversation now.
+          Promptica is a full-stack AI chat app with real-time streaming,
+          persistent history, and multi-model support — powered by Groq's
+          blazing fast Llama models.
         </p>
 
         <div className="flex gap-3 flex-wrap justify-center">
           {user ? (
-            <Link to="/chat" className="btn-primary flex items-center gap-2 text-base px-7 py-3">
+            <Link
+              to="/chat"
+              className="btn-primary flex items-center gap-2 text-base px-7 py-3"
+            >
               <MessageSquare size={18} />
               Open Chat
             </Link>
           ) : (
             <>
-              <Link to="/register" className="btn-primary flex items-center gap-2 text-base px-7 py-3">
+              <Link
+                to="/register"
+                className="btn-primary flex items-center gap-2 text-base px-7 py-3"
+              >
                 <Sparkles size={18} />
                 Get Started Free
               </Link>
@@ -106,11 +113,17 @@ export default function Home() {
             <div
               key={i}
               className="card p-6 flex gap-4 items-start animate-slide-up"
-              style={{ animationDelay: `${i * 80}ms`, animationFillMode: "both" }}
+              style={{
+                animationDelay: `${i * 80}ms`,
+                animationFillMode: "both",
+              }}
             >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "var(--accent-light)", color: "var(--accent)" }}
+                style={{
+                  background: "var(--accent-light)",
+                  color: "var(--accent)",
+                }}
               >
                 <Icon size={20} />
               </div>
@@ -121,7 +134,10 @@ export default function Home() {
                 >
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--text-3)" }}>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--text-3)" }}
+                >
                   {desc}
                 </p>
               </div>
