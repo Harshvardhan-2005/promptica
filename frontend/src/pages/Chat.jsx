@@ -303,7 +303,7 @@ export default function Chat() {
             <p className="text-sm max-w-xs" style={{ color: "var(--text-3)" }}>
               Type a message below to chat with{" "}
               <span style={{ color: "var(--accent)" }}>
-                {MODELS.find((m) => m.id === model)?.name}
+                {MODELS.find((m) => m.id === model)?.short}
               </span>
             </p>
           </div>
