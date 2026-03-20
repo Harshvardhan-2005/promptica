@@ -16,9 +16,9 @@ import {
 const API = import.meta.env.VITE_API_URL || "";
 
 const MODELS = [
-  { id: "llama-3.3-70b-versatile", name: "Llama 3.3 70B" },
-  { id: "llama-3.1-8b-instant", name: "Llama 3.1 8B" },
-  { id: "mixtral-8x7b-32768", name: "Mixtral 8x7B" },
+  { id: "llama-3.3-70b-versatile", name: "Llama 3.3 70B", short: "Llama 3.3" },
+  { id: "llama-3.1-8b-instant", name: "Llama 3.1 8B", short: "Llama 3.1" },
+  { id: "mixtral-8x7b-32768", name: "Mixtral 8x7B", short: "Mixtral" },
 ];
 
 function Message({ msg, isStreaming }) {
