@@ -1,6 +1,6 @@
 # Promptica ⚡
 
-A full-stack AI chat application powered by **Groq AI** (free), built with the MERN stack. Features real-time streaming responses, persistent chat history, user authentication, and light/dark mode.
+A full-stack AI chat application built using the MERN stack (MongoDB, Express, React, Node.js) and powered by Groq AI (free). The app allows users to have real-time conversations with an AI assistant, where responses are streamed instantly for a smooth chat experience. It includes user authentication for secure login, persistent chat history so conversations are saved and can be accessed later, and a light/dark mode option for a better user interface. Overall, it demonstrates how modern web technologies and AI can be combined to create a responsive and user-friendly chat platform.
 
 ![Promptica](https://img.shields.io/badge/AI-Groq%20%E2%9A%A1-38bdf8?style=flat-square) ![Stack](https://img.shields.io/badge/Stack-MERN-0ea5e9?style=flat-square) ![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)
 
